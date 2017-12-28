@@ -25,3 +25,12 @@ def classify0(inX,dataSet,labels,k):
     sortedClassCount = sorted(classCount.iteritems(),
                               key=operator.itemgetter(1),reverse=True)
     return sortedClassCount[0][0]
+'''
+CMD:
+
+import kNN
+group,labels=kNN.createDataSet();
+group
+labels
+group,labels=kNN.createDataSet();
+'''
