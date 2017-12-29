@@ -86,7 +86,14 @@ def autoNorm(dataSet):
     normDataSet = dataSet - tile(minVals,(m,1))
     normDataSet = normDataSet/tile(ranges,(m,1))
     return normDataSet,ranges,minVals
+'''
 
+reload(kNN)
+normMat,ranges,minVals=kNN.autoNorm(datingDataMat)
+norMat
+...
+...
+'''
 
 def datingClassTest():
     hoRatio  = 0.10
@@ -97,11 +104,32 @@ def datingClassTest():
     errorCount = 0.0
     for i in range(numTestVecs):
         classifierResult = classify0(normMat[i,:],normMat[numTestVecs:m,:],
-                                     datingLabels[numTestVecs:m],3)
+                                     datingLabels[numTestVecs:m],5)
         print 'the classsifierResult came back with: %d,the real answer is: %d '\
                 %(classifierResult,datingLabels[i])
         if(classifierResult != datingLabels[i]) : errorCount +=1.0
     print "the total error rate is: %f "%(errorCount/float(numTestVecs))
+'''
+kNN.datingClassTest()
+'''
+
+def classifyPerson():
+    resultList = ['not at all','in small doses','in large doses']
+    percentTats = float(raw_input("psercentage of time spent palying video games ?"))
+    ffMiles = float(raw_input("requent flier miles earned per year ?"))
+    iceCream = float(raw_input("liters of ice cream consumed per year ?"))
+    datingDataMat,datingLabels = file2matrix('datingTestSet2.txt')
+    normMat,ranges,minVals = autoNorm(datingDataMat)
+    inArr = array([ffMiles, percentTats, iceCream])
+    classifierResult = classify0((inArr-minVals)/ranges,normMat,datingLabels,3)
+    print "You will probably like this person :",\
+            resultList[classifierResult - 1]
+'''
+kNN.classifyPerson()
+'''
+
+
+
 
 
 
