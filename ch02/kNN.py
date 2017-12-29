@@ -128,6 +128,22 @@ def classifyPerson():
 kNN.classifyPerson()
 '''
 
+def img2vector(filename):
+    returnVect = zeros((1,1024))
+    print returnVect
+    fr = open(filename)
+    for i in range(32):
+        lineStr = fr.readlines()
+        if lineStr:
+            for j in range(32):
+                returnVect[0,32*i+j] = int(lineStr[j])
+    return returnVect
+
+'''
+testVector = kNN.img2vector('testDigits/0_13.txt')
+'''
+def handwitingClassTest():
+    hwLabels = []
 
 
 
